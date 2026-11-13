@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RCC_Settings
   m_EditorClassIdentifier: 
   controllerSelectedIndex: 1
-  behaviorSelectedIndex: 0
-  overrideBehavior: 0
+  behaviorSelectedIndex: 1
+  overrideBehavior: 1
   overrideFPS: 1
   overrideFixedTimeStep: 1
   fixedTimeStep: 0.02
@@ -173,8 +173,8 @@ MonoBehaviour:
     tractionHelper: 1
     angularDragHelper: 1
     counterSteering: 0
-    ABS: 0
-    ESP: 0
+    ABS: 1
+    ESP: 1
     TCS: 0
     applyExternalWheelFrictions: 0
     applyRelativeTorque: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   units: 0
   uiType: 0
   useTelemetry: 0
-  mobileController: 2
+  mobileController: 0
   UIButtonSensitivity: 3
   UIButtonGravity: 5
   gyroSensitivity: 2
