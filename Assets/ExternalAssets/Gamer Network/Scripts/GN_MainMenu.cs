@@ -32,10 +32,8 @@ public class GN_MainMenu : MonoBehaviour {
 			InitializeGame ();
 		}
 		InitializeUI ();
-        if (!SaveData.Instance.UnlockEverything)
-        {
-            UnlockPopUpPanel.SetActive(true);
-        }
+		if (!SaveData.Instance.UnlockEverything && UnlockPopUpPanel != null)
+			UnlockPopUpPanel.SetActive (true);
     }
 
 	void InitializeGame () {
@@ -64,7 +62,8 @@ public class GN_MainMenu : MonoBehaviour {
                 gm.SetActive(false);
             }
         }
-		ExitDialogue.SetActive (false);
+		if (ExitDialogue != null)
+			ExitDialogue.SetActive (false);
 	}
 
 	public void PlayBtn () {
@@ -74,7 +73,8 @@ public class GN_MainMenu : MonoBehaviour {
 
 	public void checkCoins()
 	{
-		coinsText.text = SaveData.Instance.Coins.ToString();
+		if (coinsText != null)
+			coinsText.text = SaveData.Instance.Coins.ToString();
 	}
 	public void soundOn()
 	{
@@ -124,27 +124,33 @@ public class GN_MainMenu : MonoBehaviour {
     #region Ui Buttons
     public void ShowStore()
     {
-        storePanel.SetActive(true);
+		if (storePanel != null)
+			storePanel.SetActive (true);
     }
     public void CloseStore()
     {
-        storePanel.SetActive(false);
+		if (storePanel != null)
+			storePanel.SetActive (false);
     }
     public void ShowSetting()
     {
-        settingPanel.SetActive(true);
+		if (settingPanel != null)
+			settingPanel.SetActive (true);
     }
     public void CloseSetting()
     {
-        settingPanel.SetActive(false);
+		if (settingPanel != null)
+			settingPanel.SetActive (false);
     }
     public void ShowReward()
     {
-        rewardPanel.SetActive(true);
+		if (rewardPanel != null)
+			rewardPanel.SetActive (true);
     }
     public void CloseReward()
     {
-        rewardPanel.SetActive(false);
+		if (rewardPanel != null)
+			rewardPanel.SetActive (false);
     }
     #endregion
     #region InApp

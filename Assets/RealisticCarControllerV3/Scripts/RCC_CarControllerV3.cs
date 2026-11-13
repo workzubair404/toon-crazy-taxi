@@ -1843,10 +1843,10 @@ public class RCC_CarControllerV3 : RCC_Core {
 
 		if (currentGear == 0) {
 
-			if (launched >= .25f)
-				clutchInput = Mathf.Lerp (clutchInput, (Mathf.Lerp (1f, (Mathf.Lerp (clutchInertia, 0f, ((wheelRPM) / Mathf.Clamp(poweredWheels, 1, Mathf.Infinity)) / gears [0].targetSpeedForNextGear)), Mathf.Abs (throttleInput))), Time.fixedDeltaTime * 5f);
+			if (throttleInput > .05f)
+				clutchInput = Mathf.Lerp (clutchInput, 0f, Time.fixedDeltaTime * 25f);
 			else
-				clutchInput = Mathf.Lerp (clutchInput, 1f / speed, Time.fixedDeltaTime * 5f);
+				clutchInput = Mathf.Lerp (clutchInput, 1f, Time.fixedDeltaTime * 12f);
 			
 		} else {
 			

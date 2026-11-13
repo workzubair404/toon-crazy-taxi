@@ -67,16 +67,15 @@ public class GN_PlayerSelection : MonoBehaviour {
     void Start () {
 		Time.timeScale = 1;
 		Selection_UI.FillBar.value = 0;
-		Selection_UI.LoadingScreen.SetActive (false);
+		if (Selection_UI.LoadingScreen != null)
+			Selection_UI.LoadingScreen.SetActive (false);
 		checkCoins();
 		if (!GameManager.Instance.Initialized) {
 			InitializeGame ();
 		}
 		GetPlayerInfo ();
-        if (!SaveData.Instance.UnlockCars)
-        {
-            UnlockPopUpPanel.SetActive(true);
-        }
+		if (!SaveData.Instance.UnlockCars && UnlockPopUpPanel != null)
+			UnlockPopUpPanel.SetActive (true);
    }
 
     void InitializeGame () {
@@ -111,7 +110,8 @@ public class GN_PlayerSelection : MonoBehaviour {
 
     public void checkCoins()
     {
-        coinsText.text = SaveData.Instance.Coins.ToString();
+		if (coinsText != null)
+			coinsText.text = SaveData.Instance.Coins.ToString();
     }
 
     public void BuyCar()
@@ -191,7 +191,8 @@ public class GN_PlayerSelection : MonoBehaviour {
 		GameManager.Instance.EditorSession = false;
 		#endif
 		GameManager.Instance.CurrentPlayer = current;
-		Selection_UI.LoadingScreen.SetActive (true);
+		if (Selection_UI.LoadingScreen != null)
+			Selection_UI.LoadingScreen.SetActive (true);
         if (AdsManager.instance && !SaveData.Instance.RemoveAds)
         {
             AdsManager.instance.ShowInterstitialAd();

@@ -102,6 +102,11 @@ public class GN_GameController : MonoBehaviour {
 		instance = this;
 	}
 
+	static void SetUiActive (GameObject ui, bool active) {
+		if (ui != null)
+			ui.SetActive (active);
+	}
+
 	void Start () {
 		//GameManager Variables Reset
 		GameManager.Instance.GameStatus = null;
@@ -169,11 +174,27 @@ public class GN_GameController : MonoBehaviour {
 		}
 	}
 
+	void ApplyArcadeDriveFeel (RCC_CarControllerV3 rcc) {
+		if (rcc == null)
+			return;
+		rcc.engineInertia = 0.02f;
+		rcc.clutchInertia = 0.02f;
+		rcc.gearShiftingDelay = 0.02f;
+		rcc.maxEngineTorque = 700f;
+		rcc.CreateEngineCurve ();
+	}
+
 	public void initializeCar()
 	{
 		carController.SetActive(true);
 		carCamera.SetActive(true);
-		playableCars[GameManager.Instance.CurrentPlayer].GetComponent<RCC_CarControllerV3>().StartEngine();
+		var playerCar = playableCars[GameManager.Instance.CurrentPlayer];
+		var carRigidbody = playerCar.GetComponent<Rigidbody>();
+		if (carRigidbody != null)
+			carRigidbody.drag = 0.01f;
+		var rcc = playerCar.GetComponent<RCC_CarControllerV3>();
+		ApplyArcadeDriveFeel (rcc);
+		rcc.StartEngine();
 		if (playableCars[GameManager.Instance.CurrentPlayer].name.Contains("Sedan"))
 		{
 			playerSteering.GetComponent<Image>().sprite = playableSteerings[0];
@@ -191,11 +212,12 @@ public class GN_GameController : MonoBehaviour {
 
 		Time.timeScale = 1;
 
-		Game_Elements.LevelComplete.SetActive (false);
-		Game_Elements.LevelFailed.SetActive (false);
-		Game_Elements.GameExit.SetActive (false);
-		Game_Elements.LoadingScreen.SetActive (false);
-		Game_Elements.PauseMenu.SetActive (false);
+		SetUiActive (Game_Elements.LevelComplete, false);
+		SetUiActive (Game_Elements.LevelFailed, false);
+		SetUiActive (Game_Elements.GameExit, false);
+		SetUiActive (Game_Elements.LoadingScreen, false);
+		SetUiActive (Game_Elements.PauseMenu, false);
+		SetUiActive (Game_Elements.continueScreen, false);
 
 		//Reset Finish Points
 		if (Levels [currentLevel - 1].Objectives.Length > 0) {
@@ -203,14 +225,18 @@ public class GN_GameController : MonoBehaviour {
 				if (Levels [currentLevel - 1].Objectives [i].FinishPoint != null)
                 {
                     Debug.Log("Instruction");
-                    Game_Elements.InstructionText.gameObject.transform.parent.gameObject.SetActive(true);
-                    Game_Elements.InstructionText.gameObject.SetActive(true);
+					if (Game_Elements.InstructionText != null) {
+						Game_Elements.InstructionText.gameObject.transform.parent.gameObject.SetActive(true);
+						Game_Elements.InstructionText.gameObject.SetActive(true);
+					}
                     Levels[currentLevel - 1].Objectives[i].FinishPoint.SetActive(false);
                 }
                 if (Levels [currentLevel - 1].Objectives [i].Instruction == "")
                 {
-                    Game_Elements.InstructionText.gameObject.transform.parent.gameObject.SetActive(false);
-                    Game_Elements.InstructionText.gameObject.SetActive(false);
+					if (Game_Elements.InstructionText != null) {
+						Game_Elements.InstructionText.gameObject.transform.parent.gameObject.SetActive(false);
+						Game_Elements.InstructionText.gameObject.SetActive(false);
+					}
                     Debug.LogWarning("Please write insctruction for Level->" + GameManager.Instance.CurrentLevel + " Objective->" + (i + 1) + " in the inspector !");
                 }
             }
@@ -226,6 +252,11 @@ public class GN_GameController : MonoBehaviour {
 			Levels[currentLevel - 1].playerCar[0].Item.SetActive(true);
 			Levels[currentLevel - 1].playerCar[0].Item.transform.position = Levels [currentLevel - 1].playerCar [0].SpawnPoint.position;
 			Levels[currentLevel - 1].playerCar[0].Item.transform.rotation = Levels [currentLevel - 1].playerCar [0].SpawnPoint.rotation;
+			var playerCar = playableCars[GameManager.Instance.CurrentPlayer];
+			var carRigidbody = playerCar.GetComponent<Rigidbody>();
+			if (carRigidbody != null)
+				carRigidbody.drag = 0.01f;
+			ApplyArcadeDriveFeel (playerCar.GetComponent<RCC_CarControllerV3> ());
             //			for (int i = 0; i < Levels [currentLevel - 1].playerCar.Length; i++) {
             //				SetItemPosition (Levels [currentLevel - 1].playerCar [i].Item, Levels [currentLevel - 1].playerCar [i].SpawnPoint);
             //			}
@@ -246,19 +277,22 @@ public class GN_GameController : MonoBehaviour {
 	{
 		GameManager.Instance.GameStatus = null;
 		Time.timeScale = 1;
-		Game_Elements.Timer_txt.color = Color.white;
+		if (Game_Elements.Timer_txt != null)
+			Game_Elements.Timer_txt.color = Color.white;
 		GameManager.Instance.ResumeTimer();
 		LevelTime = (Levels [currentLevel - 1].Minutes * 60)/2 + (Levels [currentLevel - 1].Seconds)/2;
 		if (isTimerEnabled)
 			InvokeRepeating ("GameTimer", 0, 1);
 		carCamera.SetActive(true);
 		EnableAudio();
-		Game_Elements.continueScreen.SetActive(false);
+		SetUiActive (Game_Elements.continueScreen, false);
 		carController.SetActive(true);
 		playableCars[GameManager.Instance.CurrentPlayer].transform.position = Levels[currentLevel - 1].playerCar[0].SpawnPoint.position;
 		playableCars[GameManager.Instance.CurrentPlayer].transform.rotation = Levels[currentLevel - 1].playerCar[0].SpawnPoint.rotation;
-		playableCars[GameManager.Instance.CurrentPlayer].GetComponent<Rigidbody>().isKinematic = false;
-		playableCars[GameManager.Instance.CurrentPlayer].GetComponent<Rigidbody>().drag = 0.05f;
+		var playerCar = playableCars[GameManager.Instance.CurrentPlayer];
+		playerCar.GetComponent<Rigidbody>().isKinematic = false;
+		playerCar.GetComponent<Rigidbody>().drag = 0.01f;
+		ApplyArcadeDriveFeel (playerCar.GetComponent<RCC_CarControllerV3> ());
 	}
 
 	public void getDoubleCoins()
@@ -276,10 +310,10 @@ public class GN_GameController : MonoBehaviour {
 
 		if (Levels [currentLevel - 1].isTimeBased) {
 			isTimerEnabled = true;
-			Game_Elements.Timer.SetActive (true);
+			SetUiActive (Game_Elements.Timer, true);
 		} else {
 			isTimerEnabled = false;
-			Game_Elements.Timer.SetActive (false);
+			SetUiActive (Game_Elements.Timer, false);
 		}
 
 		//In-Game Timer
@@ -342,8 +376,10 @@ public class GN_GameController : MonoBehaviour {
 	}
 
 	public void ShowInstruction () {
-        Game_Elements.InstructionText.gameObject.transform.parent.gameObject.SetActive(true);
-        Game_Elements.InstructionText.text = Levels [currentLevel - 1].Objectives [FinishCount].Instruction;
+		if (Game_Elements.InstructionText != null) {
+			Game_Elements.InstructionText.gameObject.transform.parent.gameObject.SetActive(true);
+			Game_Elements.InstructionText.text = Levels [currentLevel - 1].Objectives [FinishCount].Instruction;
+		}
 		FinishCount++;
 	}
 
@@ -356,16 +392,21 @@ public class GN_GameController : MonoBehaviour {
 			minutes = ((int)LevelTime / 60);
 			seconds = ((int)LevelTime % 60);
 			time = minutes.ToString ("00") + ":" + seconds.ToString ("00");
-			Game_Elements.Timer_txt.text = time;
+			if (Game_Elements.Timer_txt != null) {
+				Game_Elements.Timer_txt.text = time;
+			}
 
 			if (LevelTime <= 15.0f && LevelTime > 0.0f) {
-				Game_Elements.Timer_txt.color = Color.yellow;
-				SFX_Elements.CountDown.SetActive (true);
-				if (GameManager.Instance.Objectives <= 0) {
+				if (Game_Elements.Timer_txt != null)
+					Game_Elements.Timer_txt.color = Color.yellow;
+				if (SFX_Elements.CountDown != null)
+					SFX_Elements.CountDown.SetActive (true);
+				if (GameManager.Instance.Objectives <= 0 && SFX_Elements.CountDown != null) {
 					SFX_Elements.CountDown.SetActive (false);
 				}
 			} else if (LevelTime == 0.0f && GameManager.Instance.GameStatus != "Loose" && GameManager.Instance.Objectives > 0) {
-				SFX_Elements.CountDown.SetActive (false);
+				if (SFX_Elements.CountDown != null)
+					SFX_Elements.CountDown.SetActive (false);
 				GameManager.Instance.GameLoose ();
 			}
 		}
@@ -426,26 +467,17 @@ public class GN_GameController : MonoBehaviour {
 		playableCars[GameManager.Instance.CurrentPlayer].GetComponent<Rigidbody>().drag = 5f;
 		carController.SetActive(false);
 		GameManager.Instance.PauseTimer ();
-		SFX_Elements.CountDown.SetActive (false);
+		if (SFX_Elements.CountDown != null)
+			SFX_Elements.CountDown.SetActive (false);
 		if (GameManager.Instance.GameStatus == "Loose") {
 			yield return new WaitForSeconds (GameLooseDelay);
-            if (AdsManager.instance)
-            {
-                if (AdsManager.instance.CanShowRewardedAd())
-                {
-                    revive = true;
-                    doubleCoins = false;
-                    Game_Elements.continueScreen.SetActive(true);
-                }
-                else
-                {
-                    levelFail();
-                }
-            }
-            else
-            {
-                levelFail();
-            }
+			if (AdsManager.instance && AdsManager.instance.CanShowRewardedAd () && Game_Elements.continueScreen != null) {
+				revive = true;
+				doubleCoins = false;
+				Game_Elements.continueScreen.SetActive (true);
+			} else {
+				levelFail ();
+			}
         } else {
 			UpdateLevel ();
 			yield return new WaitForSeconds (GameWinDelay);
@@ -459,24 +491,8 @@ public class GN_GameController : MonoBehaviour {
             SaveData.Instance.Coins += tempTimeBonus;
             GN_SaveLoad.SaveProgress();
             totalCoins.text = tempTimeBonus.ToString();
-            if (AdsManager.instance)
-            {
-                if (AdsManager.instance.CanShowRewardedAd())
-                {
-                    revive = false;
-                    doubleCoins = true;
-                    Game_Elements.doubleCoinsButton.SetActive(true);
-                }
-                else
-                {
-                    Game_Elements.doubleCoinsButton.SetActive(true);
-                }
-            }
-            else
-            {
-                Game_Elements.doubleCoinsButton.SetActive(true);
-            }
-            Game_Elements.LevelComplete.SetActive(true);
+			SetUiActive (Game_Elements.doubleCoinsButton, true);
+			SetUiActive (Game_Elements.LevelComplete, true);
 		}
 		yield return new WaitForSeconds (0.5f);
 		Time.timeScale = 0;
@@ -537,8 +553,8 @@ public class GN_GameController : MonoBehaviour {
 
 	public void levelFail()
 	{
-		Game_Elements.continueScreen.SetActive(false);
-		Game_Elements.LevelFailed.SetActive (true);
+		SetUiActive (Game_Elements.continueScreen, false);
+		SetUiActive (Game_Elements.LevelFailed, true);
 	}
 
 	#endregion
@@ -581,7 +597,7 @@ public class GN_GameController : MonoBehaviour {
 		{
 			AudioListener.pause = false;
 		}
-		Game_Elements.LoadingScreen.SetActive (true);
+		SetUiActive (Game_Elements.LoadingScreen, true);
         if (AdsManager.instance && !SaveData.Instance.RemoveAds)
         {
             AdsManager.instance.ShowInterstitialAd();
@@ -599,7 +615,7 @@ public class GN_GameController : MonoBehaviour {
 			GameManager.Instance.EditorSession = false;
 			#endif
 			GameManager.Instance.CurrentLevel += 1;
-			Game_Elements.LoadingScreen.SetActive (true);
+			SetUiActive (Game_Elements.LoadingScreen, true);
             if (AdsManager.instance && !SaveData.Instance.RemoveAds)
             {
                 AdsManager.instance.ShowInterstitialAd();
@@ -613,7 +629,7 @@ public class GN_GameController : MonoBehaviour {
 		{
 			AudioListener.pause = false;
 		}
-		Game_Elements.LoadingScreen.SetActive (true);
+		SetUiActive (Game_Elements.LoadingScreen, true);
         if (AdsManager.instance && !SaveData.Instance.RemoveAds)
         {
             AdsManager.instance.ShowInterstitialAd();

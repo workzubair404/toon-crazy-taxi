@@ -19068,7 +19068,7 @@ MonoBehaviour:
   externalController: 0
   rigid: {fileID: 0}
   COM: {fileID: 5450147672948075946}
-  brakeTorque: 200000
+  brakeTorque: 6000
   steerAngle: 40
   highspeedsteerAngle: 5
   highspeedsteerAngleAtspeed: 200
@@ -19114,12 +19114,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   autoGenerateEngineRPMCurve: 1
-  maxEngineTorque: 310
+  maxEngineTorque: 420
   maxEngineTorqueAtRPM: 4500
-  minEngineRPM: 4000
+  minEngineRPM: 1000
   maxEngineRPM: 7000
   engineRPM: 0
-  engineInertia: 0.15
+  engineInertia: 0.08
   useRevLimiter: 1
   useExhaustFlame: 1
   engineRunning: 0
@@ -19155,8 +19155,8 @@ MonoBehaviour:
   currentGear: 0
   NGear: 0
   finalRatio: 3.23
-  gearShiftingDelay: 0.35
-  gearShiftingThreshold: 0.75
+  gearShiftingDelay: 0.15
+  gearShiftingThreshold: 0.85
   clutchInertia: 0.25
   gearShiftUpRPM: 5250
   gearShiftDownRPM: 3000

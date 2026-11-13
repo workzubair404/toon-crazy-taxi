@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RCC_Settings
   m_EditorClassIdentifier: 
   controllerSelectedIndex: 1
-  behaviorSelectedIndex: 1
+  behaviorSelectedIndex: 3
   overrideBehavior: 1
   overrideFPS: 1
   overrideFixedTimeStep: 1
@@ -282,8 +282,8 @@ MonoBehaviour:
   uiType: 0
   useTelemetry: 0
   mobileController: 0
-  UIButtonSensitivity: 3
-  UIButtonGravity: 5
+  UIButtonSensitivity: 50
+  UIButtonGravity: 40
   gyroSensitivity: 2
   useLightsAsVertexLights: 1
   useLightProjectorForLightingEffect: 0

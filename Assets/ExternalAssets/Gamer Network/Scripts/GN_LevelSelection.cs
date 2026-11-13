@@ -37,16 +37,15 @@ public class GN_LevelSelection : MonoBehaviour
 	void Start ()
 	{
 		Time.timeScale = 1;
-		LoadingScreen.SetActive (false);
+		if (LoadingScreen != null)
+			LoadingScreen.SetActive (false);
 		if (!GameManager.Instance.Initialized) {
 			InitializeGame ();
 		}
 		CacheButtons ();
 		LevelsInit ();
-        if (!SaveData.Instance.UnlockLevels)
-        {
-            UnlockPopUpPanel.SetActive(true);
-        }
+		if (!SaveData.Instance.UnlockLevels && UnlockPopUpPanel != null)
+			UnlockPopUpPanel.SetActive (true);
        
     }
 
@@ -97,7 +96,8 @@ public class GN_LevelSelection : MonoBehaviour
 		GameManager.Instance.EditorSession = false;
 		#endif
 		GameManager.Instance.CurrentLevel = level;
-		LoadingScreen.SetActive (true);
+		if (LoadingScreen != null)
+			LoadingScreen.SetActive (true);
         if (AdsManager.instance && !SaveData.Instance.RemoveAds)
         {
             AdsManager.instance.ShowInterstitialAd();
