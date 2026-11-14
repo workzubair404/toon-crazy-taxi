@@ -103,8 +103,11 @@ public class GN_GameController : MonoBehaviour {
 	}
 
 	static void SetUiActive (GameObject ui, bool active) {
-		if (ui != null)
-			ui.SetActive (active);
+		if (ui == null)
+			return;
+		ui.SetActive (active);
+		if (active && ui.GetComponent<TvOverlayFocus>() == null)
+			ui.AddComponent<TvOverlayFocus>();
 	}
 
 	void Start () {

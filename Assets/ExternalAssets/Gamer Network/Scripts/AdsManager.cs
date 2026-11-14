@@ -21,30 +21,23 @@ public class AdsManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-    public void Start()
-    {
-        if (!SaveData.Instance.RemoveAds)
-        {
-        }
-    }
-
     public void ShowInterstitialAd()
     {
-        Debug.LogError("Not Implemented");
+        Debug.LogWarning("Not Implemented");
     }
     public void ShowRewardedAd()
     {
-        Debug.LogError("Not Implemented");
+        Debug.LogWarning("Not Implemented");
     }
     public bool CanShowRewardedAd()
     {
-        Debug.LogError("Not Implemented");
+        Debug.LogWarning("Not Implemented");
         return false;
     }
 
     internal void DestroyBanner()
     {
-        Debug.LogError("Not Implemented");
+        Debug.LogWarning("Not Implemented");
     }
 }
 

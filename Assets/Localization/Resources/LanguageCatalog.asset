@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd49989ad559d58498dee7eae5173342, type: 3}
+  m_Name: LanguageCatalog
+  m_EditorClassIdentifier: 
+  fallbackCode: en
+  languages:
+  - code: ar
+    nativeName: "\u0627\u0644\u0639\u0631\u0628\u064A\u0629"
+    englishName: Arabic
+    rightToLeft: 1
+    fontSetId: arabic
+    probe: "\u0627\u0644\u0639\u0631\u0628\u064A\u0629"
+  - code: zh-Hans
+    nativeName: "\u4E2D\u6587\uFF08\u7B80\u4F53\uFF09"
+    englishName: Chinese Simplified
+    rightToLeft: 0
+    fontSetId: sc
+    probe: "\u7B80\u4F53\u4E2D\u6587"
+  - code: zh-Hant
+    nativeName: "\u4E2D\u6587\uFF08\u7E41\u9AD4\uFF09"
+    englishName: Chinese Traditional
+    rightToLeft: 0
+    fontSetId: tc
+    probe: "\u7E41\u9AD4\u4E2D\u6587"
+  - code: kw
+    nativeName: Kernewek
+    englishName: Cornish
+    rightToLeft: 0
+    fontSetId: latin
+    probe: Kernewek
+  - code: cs
+    nativeName: "\u010Ce\u0161tina"
+    englishName: Czech
+    rightToLeft: 0
+    fontSetId: latin
+    probe: "\u010Ce\u0161tina"
+  - code: nl
+    nativeName: Nederlands
+    englishName: Dutch
+    rightToLeft: 0
+    fontSetId: latin
+    probe: Nederlands
+  - code: en
+    nativeName: English
+    englishName: English
+    rightToLeft: 0
+    fontSetId: latin
+    probe: English
+  - code: fr
+    nativeName: "Fran\xE7ais"
+    englishName: French
+    rightToLeft: 0
+    fontSetId: latin
+    probe: "Fran\xE7ais"
+  - code: de
+    nativeName: Deutsch
+    englishName: German
+    rightToLeft: 0
+    fontSetId: latin
+    probe: Deutsch
+  - code: el
+    nativeName: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC"
+    englishName: Greek
+    rightToLeft: 0
+    fontSetId: latin
+    probe: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC"
+  - code: he
+    nativeName: "\u05E2\u05D1\u05E8\u05D9\u05EA"
+    englishName: Hebrew
+    rightToLeft: 1
+    fontSetId: hebrew
+    probe: "\u05E2\u05D1\u05E8\u05D9\u05EA"
+  - code: hi
+    nativeName: "\u0939\u093F\u0928\u094D\u0926\u0940"
+    englishName: Hindi
+    rightToLeft: 0
+    fontSetId: devanagari
+    probe: "\u0939\u093F\u0928\u094D\u0926\u0940"
+  - code: it
+    nativeName: Italiano
+    englishName: Italian
+    rightToLeft: 0
+    fontSetId: latin
+    probe: Italiano
+  - code: ja
+    nativeName: "\u65E5\u672C\u8A9E"
+    englishName: Japanese
+    rightToLeft: 0
+    fontSetId: jp
+    probe: "\u65E5\u672C\u8A9E"
+  - code: kk
+    nativeName: "\u049A\u0430\u0437\u0430\u049B\u0448\u0430"
+    englishName: Kazakh
+    rightToLeft: 0
+    fontSetId: latin
+    probe: "\u049A\u0430\u0437\u0430\u049B\u0448\u0430"
+  - code: ko
+    nativeName: "\uD55C\uAD6D\uC5B4"
+    englishName: Korean
+    rightToLeft: 0
+    fontSetId: kr
+    probe: "\uD55C\uAD6D\uC5B4"
+  - code: pl
+    nativeName: Polski
+    englishName: Polish
+    rightToLeft: 0
+    fontSetId: latin
+    probe: Polski
+  - code: pt
+    nativeName: "Portugu\xEAs"
+    englishName: Portuguese
+    rightToLeft: 0
+    fontSetId: latin
+    probe: "Portugu\xEAs"
+  - code: ru
+    nativeName: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+    englishName: Russian
+    rightToLeft: 0
+    fontSetId: latin
+    probe: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+  - code: es
+    nativeName: "Espa\xF1ol"
+    englishName: Spanish
+    rightToLeft: 0
+    fontSetId: latin
+    probe: "Espa\xF1ol"
+  - code: tl
+    nativeName: Tagalog
+    englishName: Tagalog
+    rightToLeft: 0
+    fontSetId: latin
+    probe: Tagalog
+  - code: vi
+    nativeName: "Ti\u1EBFng Vi\u1EC7t"
+    englishName: Vietnamese
+    rightToLeft: 0
+    fontSetId: latin
+    probe: "Ti\u1EBFng Vi\u1EC7t"
+  fonts:
+  - id: latin
+    primary: {fileID: 11400000, guid: 40e4d2c38b6617c48aad2fe41c047ed0, type: 2}
+  - id: arabic
+    primary: {fileID: 11400000, guid: 39f202b8c76967a49b6aa565de47e310, type: 2}
+  - id: hebrew
+    primary: {fileID: 11400000, guid: 1eca560766ac8e049839c949c4a8e84c, type: 2}
+  - id: devanagari
+    primary: {fileID: 11400000, guid: e21df7d0fa9b19d4ba315f3794f36155, type: 2}
+  - id: sc
+    primary: {fileID: 11400000, guid: aa79a7b6593ae7748a1e7315de8da3a5, type: 2}
+  - id: tc
+    primary: {fileID: 11400000, guid: 14a8e91a077cbb94b97e6ebeee6e6696, type: 2}
+  - id: jp
+    primary: {fileID: 11400000, guid: c48374ffb398e4241880dfe41cb23af7, type: 2}
+  - id: kr
+    primary: {fileID: 11400000, guid: 66d784cc8ef32084395470f3cbbdce9e, type: 2}
+  tables:
+  - {fileID: 4900000, guid: 9b239e22c4f96d24f86314180547deef, type: 3}
+  - {fileID: 4900000, guid: 8847a27ee6825c4468d51de6ceb56c32, type: 3}
+  - {fileID: 4900000, guid: a1474f729ab0ec346b5e2e74e64aea0e, type: 3}
+  - {fileID: 4900000, guid: 1de0c2150e20d5c44b2dc21879dcc555, type: 3}
+  - {fileID: 4900000, guid: a33d3e5bef6e1794c830bfc89cfb4f86, type: 3}
+  - {fileID: 4900000, guid: 4860738939b5d0a40903d577da7830ca, type: 3}
+  - {fileID: 4900000, guid: bc0cc07e90354574abfea261f82a0e16, type: 3}
+  - {fileID: 4900000, guid: 5072a39b21215894b8ed31cabdeb4457, type: 3}
+  - {fileID: 4900000, guid: 1937f08b80cf7084b9a7034110084d94, type: 3}
+  - {fileID: 4900000, guid: d3af61bfb5064a742b1dc7826f317903, type: 3}
+  - {fileID: 4900000, guid: 0fc42ab00f0fad7499fb6dbdd8913d81, type: 3}
+  - {fileID: 4900000, guid: a270ac1746bdef94b835f6099edb1720, type: 3}
+  - {fileID: 4900000, guid: efa41556840db3a4ba247c19521dd10c, type: 3}
+  - {fileID: 4900000, guid: 63d7b4e221532134dbd7316cdcdcc7a3, type: 3}
+  - {fileID: 4900000, guid: d0b5a44681a59154bbcdc5969a7e8cb7, type: 3}
+  - {fileID: 4900000, guid: a374c477e43541c46a04f3dec1267404, type: 3}
+  - {fileID: 4900000, guid: cd41d0da0223dd34fad826b489dc21eb, type: 3}
+  - {fileID: 4900000, guid: 2d88276ad69672947988e8256e6b4442, type: 3}
+  - {fileID: 4900000, guid: c5aba8f6ff8ebea44b90b85d1f999067, type: 3}
+  - {fileID: 4900000, guid: 10a7bfccd130b084bb282b09ce98f831, type: 3}
+  - {fileID: 4900000, guid: cde895d07eb9bb54d851ac3cb2f340a9, type: 3}
+  - {fileID: 4900000, guid: 8f763062d90110c4bae89881f0b38111, type: 3}

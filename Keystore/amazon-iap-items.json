@@ -1,0 +1,52 @@
+{
+  "store_subscription": {
+    "itemType": "SUBSCRIPTION",
+    "price": 4.99,
+    "title": "Everything Weekly",
+    "description": "Weekly subscription. Each week adds 2000 coins and unlocks every restaurant and station.",
+    "subscriptionParent": "store_subscription",
+    "term": "Weekly"
+  },
+  "store_coins_pack_1": {
+    "itemType": "CONSUMABLE",
+    "price": 0.99,
+    "title": "Coin Pack 1",
+    "description": "A pack of 1000 coins."
+  },
+  "store_coins_pack_2": {
+    "itemType": "CONSUMABLE",
+    "price": 1.99,
+    "title": "Coin Pack 2",
+    "description": "A pack of 2500 coins."
+  },
+  "store_coins_pack_3": {
+    "itemType": "CONSUMABLE",
+    "price": 2.99,
+    "title": "Coin Pack 3",
+    "description": "A pack of 5000 coins."
+  },
+  "store_coins_pack_4": {
+    "itemType": "CONSUMABLE",
+    "price": 4.99,
+    "title": "Coin Pack 4",
+    "description": "A pack of 12000 coins."
+  },
+  "store_coins_pack_5": {
+    "itemType": "CONSUMABLE",
+    "price": 9.99,
+    "title": "Coin Pack 5",
+    "description": "A pack of 30000 coins."
+  },
+  "store_coins_pack_6": {
+    "itemType": "CONSUMABLE",
+    "price": 19.99,
+    "title": "Coin Pack 6",
+    "description": "A pack of 80000 coins."
+  },
+  "spin_wheel": {
+    "itemType": "CONSUMABLE",
+    "price": 0.99,
+    "title": "Spin Wheel",
+    "description": "One spin on the reward wheel."
+  }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FireTvRemoteActivity receives Play/Pause from the Fire TV remote.
+     Leanback stays optional so a tablet can still install this build. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" tools:replace="android:required" />
+    <uses-feature android:name="android.hardware.faketouch" android:required="false" tools:replace="android:required" />
+    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" tools:replace="android:required" />
+    <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" tools:replace="android:required" />
+    <uses-feature android:name="android.software.leanback" android:required="false" tools:replace="android:required" />
+    <uses-feature android:name="android.hardware.gamepad" android:required="false" tools:replace="android:required" />
+    <uses-feature android:name="android.hardware.type.television" android:required="false" tools:replace="android:required" />
+    <uses-feature android:name="android.software.leanback_only" tools:node="remove" />
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:anyDensity="true" />
+    <application>
+        <activity android:name="com.alphastudio.firetv.FireTvRemoteActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+            android:hardwareAccelerated="true"
+            android:resizeableActivity="true"
+            tools:node="replace"
+            tools:replace="android:name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+            <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+            <meta-data android:name="android.notch_support" android:value="true" />
+        </activity>
+    </application>
+</manifest>

@@ -75,7 +75,10 @@ public class GN_PlayerSelection : MonoBehaviour {
 		}
 		GetPlayerInfo ();
 		if (!SaveData.Instance.UnlockCars && UnlockPopUpPanel != null)
-			UnlockPopUpPanel.SetActive (true);
+		{
+			TvPanelFocusBootstrap.Attach(UnlockPopUpPanel);
+			UnlockPopUpPanel.SetActive(true);
+		}
    }
 
     void InitializeGame () {

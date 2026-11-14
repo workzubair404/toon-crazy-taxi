@@ -45,7 +45,10 @@ public class GN_LevelSelection : MonoBehaviour
 		CacheButtons ();
 		LevelsInit ();
 		if (!SaveData.Instance.UnlockLevels && UnlockPopUpPanel != null)
-			UnlockPopUpPanel.SetActive (true);
+		{
+			TvPanelFocusBootstrap.Attach(UnlockPopUpPanel);
+			UnlockPopUpPanel.SetActive(true);
+		}
        
     }
 

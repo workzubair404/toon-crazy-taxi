@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Localization;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,18 @@ public class GN_MainMenu : MonoBehaviour {
         instance = this;
     }
 
+	void OnEnable () {
+		LocalizationManager.LanguageChanged += OnLanguageChanged;
+	}
+
+	void OnDisable () {
+		LocalizationManager.LanguageChanged -= OnLanguageChanged;
+	}
+
+	void OnLanguageChanged () {
+		checkCoins();
+	}
+
 	void Start () {
 
 		Time.timeScale = 1;
@@ -33,7 +46,7 @@ public class GN_MainMenu : MonoBehaviour {
 		}
 		InitializeUI ();
 		if (!SaveData.Instance.UnlockEverything && UnlockPopUpPanel != null)
-			UnlockPopUpPanel.SetActive (true);
+			OpenPanel(UnlockPopUpPanel);
     }
 
 	void InitializeGame () {
@@ -122,10 +135,18 @@ public class GN_MainMenu : MonoBehaviour {
 		GN_SaveLoad.LoadProgress ();
 	}
     #region Ui Buttons
+    static void OpenPanel(GameObject panel)
+    {
+        if (panel == null)
+            return;
+        panel.SetActive(true);
+        if (panel.GetComponent<TvOverlayFocus>() == null)
+            panel.AddComponent<TvOverlayFocus>();
+    }
+
     public void ShowStore()
     {
-		if (storePanel != null)
-			storePanel.SetActive (true);
+        OpenPanel(storePanel);
     }
     public void CloseStore()
     {
@@ -134,8 +155,7 @@ public class GN_MainMenu : MonoBehaviour {
     }
     public void ShowSetting()
     {
-		if (settingPanel != null)
-			settingPanel.SetActive (true);
+        OpenPanel(settingPanel);
     }
     public void CloseSetting()
     {
@@ -144,8 +164,7 @@ public class GN_MainMenu : MonoBehaviour {
     }
     public void ShowReward()
     {
-		if (rewardPanel != null)
-			rewardPanel.SetActive (true);
+        OpenPanel(rewardPanel);
     }
     public void CloseReward()
     {
